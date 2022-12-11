@@ -1,2 +1,2 @@
 ### Preview
-![Loading...](https://tenor.com/b0p4M.gif)
+![Loading...](https://media0.giphy.com/media/fuwPcVGQzXZQGYVujQ/giphy.gif)
