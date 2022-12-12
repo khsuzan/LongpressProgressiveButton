@@ -49,6 +49,7 @@ class ProgressiveButtonCircular @JvmOverloads constructor(
     private val animatorListener = ValueAnimator.AnimatorUpdateListener { animation ->
         val animateFloat: Float = animation?.animatedValue as Float
         stopX = (animateFloat * max)
+        removedListener = false
     }
 
     // value animator to animate the whole progress path distance
@@ -59,13 +60,27 @@ class ProgressiveButtonCircular @JvmOverloads constructor(
             if (max == stopX) {
                 progressiveButton.onProgressFinished()
                 this.removeUpdateListener(animatorListener)
+                removedListener = true
             }
         }
     }
 
+    private var CIRCLECOLOR = BUTTON_COLOR
+        private set(value) {
+            field = value
+            paintChange()
+        }
+
     // circle paint object
     private val paintInnerCircle = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-        color = Color.parseColor(CIRCLE_COLOR)
+        color = Color.parseColor(CIRCLECOLOR)
+    }
+
+    private fun paintChange() {
+        paintInnerCircle.apply {
+            color = Color.parseColor(CIRCLECOLOR)
+        }
+        invalidate()
     }
 
     // progress paint object
@@ -80,7 +95,7 @@ class ProgressiveButtonCircular @JvmOverloads constructor(
     //text paint
     private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
         color = Color.parseColor(PROGRESS_COLOR)
-        textSize = 40F
+        textSize = TEXT_SIZE
 
     }
 
@@ -142,21 +157,31 @@ class ProgressiveButtonCircular @JvmOverloads constructor(
     }
 
 
+    override fun setEnabled(enabled: Boolean) {
+        CIRCLECOLOR = if (enabled) {
+            BUTTON_COLOR
+        } else {
+            BUTTON_COLOR_DISABLED
+        }
+        progressiveButton.onEnableDisable(enabled)
+        super.setEnabled(enabled)
+    }
+
     // on draw
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
 
-
         canvas?.drawCircle(centerX, centerY, innerCircle, paintInnerCircle)
         canvas?.save()
         canvas?.drawArc(outerCircle, -90f, stopX, false, paintOuterCircle)
-        canvas?.drawText(text.toString(), x.toFloat(), centerY, textPaint)
+        canvas?.drawText(text.toString(), x.toFloat(), centerY + TEXT_SIZE / 3, textPaint)
 
     }
 
     // interface to get the call back on finish
     interface ProgressiveButton {
         fun onProgressFinished()
+        fun onEnableDisable(isEnable: Boolean) {}
     }
 
     // method for reference the finished callback
@@ -164,14 +189,22 @@ class ProgressiveButtonCircular @JvmOverloads constructor(
         this.progressiveButton = progressiveButton
     }
 
+    // reset function
+    fun reset() {
+        stopX = 0F
+        if (removedListener) animator.addUpdateListener(animatorListener)
+        isEnabled = true
+    }
+
+
     // static variables
     private companion object {
         const val ANIMATION_SPEED_FACTOR: Long = 2L
         const val PROGRESS_WIDTH = 30F
         const val PROGRESS_COLOR = "#2fa363"
-        const val CIRCLE_COLOR = "#FFC107"
-
-        const val MIN_SIZE = 40f;
+        const val BUTTON_COLOR = "#FFC107"
+        const val BUTTON_COLOR_DISABLED = "#7E7E7E"
+        const val TEXT_SIZE = 60f;
     }
 
 }
