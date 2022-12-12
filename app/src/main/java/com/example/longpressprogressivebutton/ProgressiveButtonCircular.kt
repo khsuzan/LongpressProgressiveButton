@@ -23,8 +23,8 @@ class ProgressiveButtonCircular @JvmOverloads constructor(
     private var centerX = 0f
     private var centerY = 0f
     lateinit var bounds: Rect
-        private var x: Int = 0
-        private var y: Int = 0
+    private var x: Int = 0
+    private var y: Int = 0
 
     // removedlistener true when animator listener got removed
     private var removedListener = true
@@ -40,6 +40,7 @@ class ProgressiveButtonCircular @JvmOverloads constructor(
             field = value
             postInvalidate()
         }
+
 
     // interface declaration
     private lateinit var progressiveButton: ProgressiveButton
@@ -85,6 +86,7 @@ class ProgressiveButtonCircular @JvmOverloads constructor(
 
     // touch event
     override fun onTouchEvent(event: MotionEvent?): Boolean {
+        if (!isEnabled) return true;
         when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
                 if (max != stopX) animator.start()
@@ -148,7 +150,7 @@ class ProgressiveButtonCircular @JvmOverloads constructor(
         canvas?.drawCircle(centerX, centerY, innerCircle, paintInnerCircle)
         canvas?.save()
         canvas?.drawArc(outerCircle, -90f, stopX, false, paintOuterCircle)
-        canvas?.drawText(text.toString(), x.toFloat(),centerY, textPaint)
+        canvas?.drawText(text.toString(), x.toFloat(), centerY, textPaint)
 
     }
 
