@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         // define id
-        progressiveButtonView = findViewById<ProgressiveButtonCircular>(R.id.progressiveBtn)
+        progressiveButtonView = findViewById(R.id.progressiveBtn)
 
         // progress event fire when finished
         progressiveButtonView.onEvent(object : ProgressiveButtonCircular.ProgressiveButton {
@@ -22,6 +22,10 @@ class MainActivity : AppCompatActivity() {
                 Toast.makeText(this@MainActivity, "Completed", Toast.LENGTH_SHORT).show()
             }
         })
+
+        // true for enable click
+        // false for disable click
+        progressiveButtonView.isEnabled = false;
 
     }
 
