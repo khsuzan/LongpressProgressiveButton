@@ -197,7 +197,11 @@ class ProgressiveButtonOval @JvmOverloads constructor(
             close()
         }
     }
-
+    fun reset() {
+        stopX = 1F
+        if (removedListener) animator.addUpdateListener(animatorListener)
+        isEnabled = true
+    }
     private fun createPathEffect(pathLength: Float, phase: Float, offset: Float): PathEffect? {
         return DashPathEffect(
             floatArrayOf(pathLength, pathLength),
