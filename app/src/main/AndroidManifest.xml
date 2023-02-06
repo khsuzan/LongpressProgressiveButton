@@ -12,25 +12,30 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.LongpressProgressiveButton"
         tools:targetApi="31">
-        <activity
-            android:name=".SecondaryActivity"
-            android:exported="true">
 
+        <activity
+            android:name=".activity.MainActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
+
+        <activity
+            android:name=".activity.CircularProgressButtonActivity"
+            android:exported="true"
+            android:label="Circular Progress Bar" />
+
+        <activity
+            android:name=".activity.OvalProgressButtonActivity"
+            android:exported="true"
+            android:label="Oval Progress Bar" />
+
     </application>
 
 </manifest>

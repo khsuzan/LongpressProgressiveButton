@@ -4,39 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#eee"
-    tools:context=".MainActivity">
+    android:padding="32dp"
+    tools:context=".activity.MainActivity">
 
-
-    <com.example.longpressprogressivebutton.ProgressiveButtonCircular
-        android:id="@+id/progressiveBtn"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:text="Tap &amp; Hold"
-        android:textColor="@color/white"
+    <Button
+        android:id="@+id/btnCircularProgressBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/circular_progress"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <Button
-        android:id="@+id/button"
-        android:layout_width="wrap_content"
+        android:id="@+id/btnOvalProgressBar"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
-        android:text="Tap to Disable"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="@string/oval_progress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <Button
-        android:id="@+id/reset"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Reset"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnCircularProgressBar" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

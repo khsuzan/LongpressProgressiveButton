@@ -1,4 +1,4 @@
-package com.example.longpressprogressivebutton
+package com.example.longpressprogressivebutton.utils
 
 import android.animation.ValueAnimator
 import android.content.Context
@@ -9,7 +9,7 @@ import android.view.MotionEvent
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.animation.doOnEnd
 
-class ProgressiveButtonCircular @JvmOverloads constructor(
+class CircularProgressButton @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : AppCompatButton(context, attrs) {
 
@@ -200,11 +200,11 @@ class ProgressiveButtonCircular @JvmOverloads constructor(
     // static variables
     private companion object {
         const val ANIMATION_SPEED_FACTOR: Long = 2L
-        const val PROGRESS_WIDTH = 30F
-        const val PROGRESS_COLOR = "#2fa363"
-        const val BUTTON_COLOR = "#FFC107"
+        const val PROGRESS_WIDTH = 20F
+        const val PROGRESS_COLOR = "#0069B3"
+        const val BUTTON_COLOR = "#EDBD0F"
         const val BUTTON_COLOR_DISABLED = "#7E7E7E"
-        const val TEXT_SIZE = 60f;
+        const val TEXT_SIZE = 30f
     }
 
 }
