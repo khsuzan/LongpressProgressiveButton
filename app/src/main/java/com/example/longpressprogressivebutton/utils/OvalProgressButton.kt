@@ -146,7 +146,7 @@ class OvalProgressButton @JvmOverloads constructor(
     // calculate max path distance for progress
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        val diffH = height * 0.08F
+        val diffH = height * 0.04F * SPACE_BELOW_PROGRESS
         progressPY1 = height * 0.50F
         val progressPY2 = progressPY1 + diffH
         val bgPY = progressPY2 + diffH * 0.5F
@@ -248,6 +248,7 @@ class OvalProgressButton @JvmOverloads constructor(
     private companion object {
         const val ANIMATION_SPEED_FACTOR: Long = 1L
         const val PROGRESS_WIDTH = 20F
+        const val SPACE_BELOW_PROGRESS = 0
         const val PROGRESS_COLOR = "#0069B3"
         const val BUTTON_COLOR = "#EDBD0F"
         const val BUTTON_COLOR_DISABLED = "#7E7E7E"
